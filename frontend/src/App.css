@@ -1,0 +1,49 @@
+body {
+    background-color: #2A9D8F;
+    background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+    padding: 0 20px;
+    text-align: center;
+}
+
+.login-Heading {
+    margin-bottom: 10px;
+}
+
+form {
+    margin-right: 10px;
+}
+
+.container {
+    padding: 10px;
+}
+
+.usernameInput {
+    margin-right: 40px;
+}
+
+.passwordInput {
+    margin-left: 40px;
+}
+
+form.form-field {
+  height: 8em;
+  font: 1.2em sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+header {
+  background-color: #264653;
+  margin: auto -20px;
+  padding: 5px 32px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+header h1, h2 {
+  color: #ffffff;
+  font-family: "McLaren", cursive;
+  font-weight: 200;
+  cursor: pointer;
+}
