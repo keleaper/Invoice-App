@@ -1,3 +1,4 @@
+import { config } from "./config.js";
 import express from "express";
 import cors from "cors";
 import db from "./db.js";
@@ -8,7 +9,7 @@ import uploadRoute from "./upload.js";
 import bcyrpt from "bcrypt";
 
 const app = express(); // this is why our routes start with app.
-const PORT = 5000;
+const PORT = config.port;
 
 // These are necessary especially when using type: "moudule", __dirname is not available by default so we need to manually create it
 const __filename = fileURLToPath(import.meta.url);
