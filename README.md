@@ -53,7 +53,7 @@ A full-stack invoice management application that allows users to register, log i
 ### 3. Run the App
 **Frontend:**
 - cd frontend
-- npm start # or npm run dev, depending on your setup
+- npm start  // or npm run dev, depending on your setup
 
 **Backend:**
 - cd backend
