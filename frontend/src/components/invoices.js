@@ -13,6 +13,12 @@ function Invoices() {
 
     useEffect(() => {  
         const userId = localStorage.getItem("userId");
+
+        if (!userId) { // Takes to home page if user isnt logged in. Done for security So they cant just type /admin manually and get access
+            navigate("/"); 
+            return;
+        }
+
         const fetchFiles = async () => {
             try {
                const res = await axios.get(`http://localhost:5000/files?userId=${userId}`);
