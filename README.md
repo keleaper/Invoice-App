@@ -43,21 +43,21 @@ A full-stack invoice management application that allows users to register, log i
 
 ### 2. Install Dependencies
 **Frontend:**
--cd frontend
--npm install
+- cd frontend
+- npm install
 
 **Backend:**
--cd backend
--npm install
+- cd backend
+- npm install
 
 ### 3. Run the App
 **Frontend:**
--cd frontend
--npm start # or npm run dev, depending on your setup
+- cd frontend
+- npm start # or npm run dev, depending on your setup
 
 **Backend:**
--cd backend
--node server.js
+- cd backend
+- node server.js
 
 # Admin Access
 To view and delete all user uploads, log in with an admin account.
