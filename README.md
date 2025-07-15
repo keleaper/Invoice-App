@@ -37,9 +37,9 @@ A full-stack invoice management application that allows users to register, log i
 - npm
 
 ### 1. Clone Repo
-open terminal - bash or powershell
-git clone https://github.com/keleaper/Invoice-App.git
-cd Invoice-App
+- open terminal - bash or powershell
+- git clone https://github.com/keleaper/Invoice-App.git
+- cd Invoice-App
 
 ### 2. Install Dependencies
 **Frontend:**
