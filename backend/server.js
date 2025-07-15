@@ -21,6 +21,7 @@ app.use(express.json()); // Allows app to access req.body when client sends JSON
 app.use(express.urlencoded({ extended: true })); // Enable access to req.body when form data is sumbitted as HTML forms (parases incoming requests with URL-encoded payloads; HTML forms)
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // serves static files from a directory. Makes files in __dirname accessible via URL's that start with /uploads
+// serving files here
 
 app.use("/", uploadRoute); // Takes all routes defined inside uploadRoute and moutns on base path of main express app (aka this file)
 // "/" followed by uploadRoute which = home url path + upload which is the name of the uploadRoute path
@@ -91,7 +92,7 @@ app.get("/files", async (req, res) => {
     }
 
     try {
-        const result = await db.query("SELECT filepath FROM uploads WHERE user_id = $1 ORDER BY uploaded_at DESC", [userId]);
+        const result = await db.query("SELECT id, filename, filepath FROM uploads WHERE user_id = $1 ORDER BY uploaded_at DESC", [userId]);
 
         res.json(result.rows); // return full object with filename + filepath
     } catch (err) { 

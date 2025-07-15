@@ -29,10 +29,12 @@ try {
 // Set storage config for multer. storing file in uploads folder
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, uploadFolder); // was ../uploads and had errors
+    cb(null, "uploads/");  // (uploadFolder)
   },
   filename: (req, file, cb) => {
-    const uniqueName = `${Date.now()}-${file.originalname}`;
+    const safeName = file.originalname.replace(/\s+/g, "-"); // replaces spaces with dashes and special characters.
+    const uniqueName = `${Date.now()}-${safeName}`;
+    file.uniqueName = uniqueName;
     cb(null, uniqueName)
   },
 });
@@ -53,7 +55,7 @@ const upload = multer({ storage });
 // Accept multiple files under the "invoice" field
 uploadRoute.post("/upload", upload.array("invoice"), async (req, res) => {
     const userId = req.body.userId; // sent from frontend
-    
+
     // exit if userId is not provided
     if (!userId) {
         return res.status(500).json({ message: "Missing userId" });
@@ -68,7 +70,7 @@ uploadRoute.post("/upload", upload.array("invoice"), async (req, res) => {
         const fileUrls = [];
 
         for (const file of req.files) {
-            const filePath = `/uploads/${file.filename}`;
+            const filePath = `/uploads/${file.uniqueName}`;
             await db.query("INSERT INTO uploads (filename, filepath, user_id) VALUES ($1, $2, $3)", [file.originalname, filePath, userId]);
             fileUrls.push(filePath); // adds the filePath/file into the fileUrls array
         }
