@@ -49,7 +49,6 @@ function Invoices() {
         // const formData = new FormData(); // create new FormData object (easily construct a form payload, especially for file uploads)
         // files.forEach((fileItem) => { // loops through each file in the files array and appends them individually. Allows for each file not just one
         // formData.append("invoice", fileItem); // adds selected file to the FormData object with the key of "invoice" and appends one file(item) at a time
-        // });
 
         try {
             const res = await axios.post("http://localhost:5000/upload", formData, { // sends POST request to backend route /upload with the formData
@@ -131,6 +130,7 @@ function Invoices() {
                                             className="file-image"
                                             src={`http://localhost:5000${file.filepath}`}
                                             alt="invoice"
+                                            onError={(event) => {event.target.onerror = null; event.target.src = "/file-icon.png";}} // in case there is an error showing image show placeholder icon
                                             />
                                         </div>
                                         <a 

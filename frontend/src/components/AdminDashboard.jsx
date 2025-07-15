@@ -109,6 +109,8 @@ function AdminDashboard() {
                                         className="file-image" 
                                         src={`http://localhost:5000${file.filepath}`} 
                                         alt="uploaded file" 
+                                        onError={(event) => {event.target.onerror = null; event.target.src = "/file-icon.png";}} // in case there is an error showing image show placeholder icon
+
                                         />
                                     </div>
                                     <a 
