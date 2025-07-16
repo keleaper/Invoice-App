@@ -1,12 +1,13 @@
 import pg from "pg";
+import dotenv from "dotenv";
 
 // PostgreSQL connection
 const db = new pg.Client({
-    user: "postgres",
-    host: "localhost", // website
-    database: "user_info",
-    password: "Back2back",
-    port: 5432,
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST, // website
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
 });
 
 

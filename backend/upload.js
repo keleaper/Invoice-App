@@ -32,7 +32,7 @@ const storage = multer.diskStorage({
     cb(null, "uploads/");  // (uploadFolder)
   },
   filename: (req, file, cb) => {
-    const safeName = file.originalname.replace(/\s+/g, "-"); // replaces spaces with dashes and special characters.
+    const safeName = file.originalname.replace(/\s+/g, "-"); // replaces spaces with dashes
     const uniqueName = `${Date.now()}-${safeName}`;
     file.uniqueName = uniqueName;
     cb(null, uniqueName)
