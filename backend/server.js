@@ -58,7 +58,7 @@ app.post("/login", async (req, res) => { // adds the / route and the end of our 
     const { email, password } = req.body;
 
     try {
-        const query = "SELECT * FROM person WHERE email = $1"; // used to have ${email} did not work (This syntax works)
+        const query = "SELECT * FROM person WHERE email = ($1)"; // used to have ${email} did not work (This syntax works)
         const result = await db.query(query, [email]); // result queries to db and does the query SQL and plugs in the users email from the req.body (User input)
 
         // result.rows - contains the matching rows of user info(if any)
