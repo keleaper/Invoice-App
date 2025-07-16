@@ -6,7 +6,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import uploadRoute from "./upload.js";
 // Authenication and password protection
-import bcyrpt from "bcrypt";
+import bcrypt from "bcrypt";
 
 const app = express(); // this is why our routes start with app.
 const PORT = config.port;
@@ -30,7 +30,7 @@ app.use("/", uploadRoute); // Takes all routes defined inside uploadRoute and mo
 // POST register page
 app.post("/register", async (req, res) => { // async because well be waiting on db and bcrypt operations
     const { email, password } = req.body; // req.body contains the email and passwrod the user submitted from the React form
-    const hashed = await bcyrpt.hash(password, 10) // 10 is for salt rounds
+    const hashed = await bcrypt.hash(password, 10) // 10 is for salt rounds
 
     try {
         const regQuery = "INSERT INTO person (email, password) VALUES ($1, $2)";
@@ -58,7 +58,7 @@ app.post("/login", async (req, res) => { // adds the / route and the end of our 
     const { email, password } = req.body;
 
     try {
-        const query = "SELECT * FROM person WHERE email = ($1)"; // used to have ${email} did not work (This syntax works)
+        const query = "SELECT * FROM person WHERE email = $1"; // used to have ${email} did not work (This syntax works)
         const result = await db.query(query, [email]); // result queries to db and does the query SQL and plugs in the users email from the req.body (User input)
 
         // result.rows - contains the matching rows of user info(if any)
@@ -67,7 +67,7 @@ app.post("/login", async (req, res) => { // adds the / route and the end of our 
         }
 
         const user = result.rows[0]; // first row returned from the query (should be the only one if emails are unique)
-        const match = await bcyrpt.compare(password, user.password) // compares plain password the user entered with the hashed password (const hashed above) stored in db
+        const match = await bcrypt.compare(password, user.password) // compares plain password the user entered with the hashed password (const hashed above) stored in db
 
         if (match) {
             return res.json({ success: true, message: "Login Successful", user: { id: user.id, email: user.email, is_admin: user.is_admin }}); // /login route now includes user.id in response
