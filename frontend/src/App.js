@@ -1,7 +1,7 @@
 import React from "react";
-import Login from "./components/login.js";
-import Register  from "./components/register.js";
-import Invoices from "./components/invoices.js";
+import Login from "./components/login.jsx";
+import Register  from "./components/register.jsx";
+import Invoices from "./components/invoices.jsx";
 import AdminDashboard from "./components/AdminDashboard.jsx";
 import './App.css';
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
